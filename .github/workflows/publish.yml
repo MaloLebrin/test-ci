@@ -27,6 +27,11 @@ jobs:
       - name: Install dependancies
         run: nci
 
+      - name: Initialise NPM config
+        run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: 🚀 publish
         run: npm publish
         env:
