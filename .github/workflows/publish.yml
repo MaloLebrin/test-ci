@@ -27,13 +27,18 @@ jobs:
       - name: Install dependancies
         run: nci
 
+      - name: Initialize git user
+        run: |
+          git config --global user.email "malolebrin@gmail.com"
+          git config --global user.name "Malo Lebrin"
+
       - name: Initialise NPM config
         run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 🚀 publish
-        run: npm publish
+        run: nr release:it --ci
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

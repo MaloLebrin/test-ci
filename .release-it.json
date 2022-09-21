@@ -1,0 +1,19 @@
+{
+  "git": {
+    "requireBranch": "main",
+    "commitMessage": "core: release v${version}"
+  },
+  "hooks": {
+    "before:init": [
+      "git pull",
+      "pnpm run test"
+    ],
+    "after:bump": "pnpx auto-changelog -p"
+  },
+  "github": {
+    "release": true
+  },
+  "npm": {
+    "publish": true
+  }
+}
