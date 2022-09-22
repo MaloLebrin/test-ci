@@ -26,6 +26,23 @@ jobs:
 
       - name: Install dependancies
         run: nci
+      
+            - name: Initialize git user
+        run: |
+          git config --global user.email "malolebrin@gmail.com"
+          git config --global user.name "Malo Lebrin"
+
+      - name: Initialise NPM config
+        run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Configure npm
+        run: |
+          echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc
+          cat .npmrc
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: NPM Publish
         uses: JS-DevTools/npm-publish@v1
@@ -34,23 +51,6 @@ jobs:
           access: public
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      # - name: Initialize git user
-      #   run: |
-      #     git config --global user.email "malolebrin@gmail.com"
-      #     git config --global user.name "Malo Lebrin"
-
-      # - name: Initialise NPM config
-      #   run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
-      #   env:
-      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      # - name: Configure npm
-      #   run: |
-      #     echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc
-      #     cat .npmrc
-      #   env:
-      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       # - name: 🚀 publish
       #   run: npm publish
