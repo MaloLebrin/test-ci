@@ -1,7 +1,7 @@
 {
   "name": "@malolebrin/test-ci",
   "type": "module",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "publishConfig": {
     "access": "public",
     "registry": "https://npm.pkg.github.com/@malolebrin"

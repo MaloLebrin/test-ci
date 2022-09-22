@@ -32,6 +32,8 @@ jobs:
         with:
           token: ${{ secrets.NPM_TOKEN }}
           access: public
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       # - name: Initialize git user
       #   run: |
