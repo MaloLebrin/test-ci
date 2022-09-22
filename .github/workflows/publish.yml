@@ -27,7 +27,7 @@ jobs:
       - name: Install dependancies
         run: nci
       
-            - name: Initialize git user
+      - name: Initialize git user
         run: |
           git config --global user.email "malolebrin@gmail.com"
           git config --global user.name "Malo Lebrin"
