@@ -19,7 +19,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-          registry-url: https://registry.npmjs.org/
+          registry-url: https://registry.npmjs.org
 
       - name: ⚙️ Setup
         run: npm i -g @antfu/ni
@@ -44,17 +44,14 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: NPM Publish
-        uses: JS-DevTools/npm-publish@v1
+      - name: Github pkg
+        uses: actions/setup-node@v3
         with:
-          token: ${{ secrets.NPM_TOKEN }}
-          access: public
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          registry-url: 'https://npm.pkg.github.com'
 
-      # - name: 🚀 publish
-      #   run: npm publish
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      #     GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - name: 🚀 publish
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
